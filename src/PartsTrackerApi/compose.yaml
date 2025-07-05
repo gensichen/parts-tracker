@@ -1,0 +1,7 @@
+﻿services:
+  partstrackerapi:
+    image: partstrackerapi
+    build:
+      context: .
+      dockerfile: PartsTrackerApi/Dockerfile
+
