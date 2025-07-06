@@ -3,6 +3,8 @@ import { Input, Table } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import partsService from '../../services/partsService'
 import CreatePartButton from '../Buttons/CreatePartButton'
+import { Space } from 'antd'
+import DeletePartButton from '../Buttons/DeletePartButton'
 
 const PartsTable = ({ parts, setParts }) => {
     useEffect(() => {
@@ -59,6 +61,18 @@ const PartsTable = ({ parts, setParts }) => {
             key: 'lastStockTake',
             render: date => new Date(date).toLocaleString(),
         },
+        {
+            title: 'Actions',
+            dataIndex: 'actions',
+            key: 'actions',
+            render: (text, record, index) => (
+                <Space>
+                    {/* {<ViewMoreButton book={record}/>} */}
+                    {<DeletePartButton parts={parts} setParts={setParts} partNumber={record.partNumber} />}
+                    {/* {<EditBookButton book={record}/>} */}
+                </Space> 
+            )
+        }
     ]
 
     // Use backend data structure directly, add a unique key for each row

@@ -15,9 +15,15 @@ const getAll = () => {
     return request.then(response => response.data)
 }
 
+// deleting a part
+const remove = (partNumber) => {
+    const request = axios.delete(`${baseUrl}/${partNumber}`)
+    return request
+}
 
 const partsService = {
-    getAll
+    getAll,
+    remove
 }
 
 export default partsService
