@@ -20,16 +20,16 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: 📦 Restore dependencies
-      run: dotnet restore PartsTrackerApi/PartsTrackerApi.csproj
+      run: dotnet restore src/PartsTrackerApi/PartsTrackerApi/PartsTrackerApi.csproj
 
     - name: 🧪 Build solution
-      run: dotnet build PartsTrackerApi/PartsTrackerApi.csproj --configuration Release --no-restore
+      run: dotnet build src/PartsTrackerApi/PartsTrackerApi/PartsTrackerApi.csproj --configuration Release --no-restore
 
     - name: ✅ Run tests
-      run: dotnet test PartsTrackerApi.Tests/PartsTrackerApi.Tests.csproj --no-build --verbosity normal
+      run: dotnet test tests/PartsTrackerApiTests/PartsTrackerApiTests.csproj --no-build --verbosity normal
 
     - name: 🐳 Build Docker image
-      run: docker build -t parts-tracker-api -f PartsTrackerApi/Dockerfile .
+      run: docker build -t parts-tracker-api -f src/PartsTrackerApi/PartsTrackerApi/Dockerfile .
 
     - name: 🧹 Format Terraform (optional)
       run: terraform fmt -check
