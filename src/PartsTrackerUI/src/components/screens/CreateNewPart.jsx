@@ -28,7 +28,7 @@ const CreateNewPart = ({ parts, setParts }) => {
     return (
         <div>
             <PageHeader
-                onBack={() => history.goBack()}
+                onBack={() => navigate(-1)}
                 title='Create New Part'
             />
             <Form

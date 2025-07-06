@@ -2,14 +2,15 @@ import { Button } from 'antd'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const CreatePartButton = () => {
+
+const EditPartButton = ({part}) => {
     return (
-        <Link to='/parts/create'>
+        <Link to={`/parts/edit/${part}`}>
             <Button type='primary'>
-                Add New
+                Edit
             </Button>
         </Link>
     )
 }
 
-export default CreatePartButton
+export default EditPartButton
