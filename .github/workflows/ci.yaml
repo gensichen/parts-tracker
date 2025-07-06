@@ -1,0 +1,40 @@
+name: CI - PartsTrackerApi
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test-package:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 🧾 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 🛠️ Setup .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: 📦 Restore dependencies
+      run: dotnet restore PartsTrackerApi/PartsTrackerApi.csproj
+
+    - name: 🧪 Build solution
+      run: dotnet build PartsTrackerApi/PartsTrackerApi.csproj --configuration Release --no-restore
+
+    - name: ✅ Run tests
+      run: dotnet test PartsTrackerApi.Tests/PartsTrackerApi.Tests.csproj --no-build --verbosity normal
+
+    - name: 🐳 Build Docker image
+      run: docker build -t parts-tracker-api -f PartsTrackerApi/Dockerfile .
+
+    - name: 🧹 Format Terraform (optional)
+      run: terraform fmt -check
+      working-directory: infra
+
+    - name: 🔍 Validate Terraform (optional)
+      run: terraform validate
+      working-directory: infra
