@@ -85,13 +85,11 @@ const PartsTable = ({ parts, setParts }) => {
 
     return (
         <div>
-            <div style={{ display: 'flex' }}>
-                <h2 style={{ paddingLeft: '1.5%', paddingTop: '1%' }}>
-                    Parts Table
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1.5% 1.5% 0 1.5%' }}>
+                <h2 style={{ margin: 0 }}>
+                    Parts Tracker
                 </h2>
-            </div>
-            <div style={{ marginLeft: 'auto', paddingRight: '1.5%', paddingTop: '1%' }}>
-                    {<CreatePartButton />}
+                <CreatePartButton />
             </div>
             <Table
                 style={{ padding: '1%' }}

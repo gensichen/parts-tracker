@@ -24,30 +24,32 @@ const Part = ({ parts, setParts }) => {
         return (
             <div>
             <PageHeader
-                onBack={() => navigate(-1)}
-                title='Part Information'
+            onBack={() => navigate(-1)}
+            title='Part Information'
             />
             <Descriptions
-                style={{ padding: '2%' }}
-                title={part.partNumber}
-                bordered
-                column={{ sm: 1, xs: 1 }}
+            style={{ padding: '2%', textAlign: 'left' }}
+            title={part.partNumber}
+            bordered
+            column={1}
+            contentStyle={{ textAlign: 'left' }}
+            labelStyle={{ textAlign: 'left' }}
             >
-                <Descriptions.Item label='Part Number'>
-                {part.partNumber}
-                </Descriptions.Item>
-                <Descriptions.Item label='Description'>
-                {part.description}
-                </Descriptions.Item>
-                <Descriptions.Item label='Quantity On Hand'>
-                {part.quantityOnHand}
-                </Descriptions.Item>
-                <Descriptions.Item label='Location Code'>
-                {part.locationCode}
-                </Descriptions.Item>
-                <Descriptions.Item label='Last Stock Take'>
-                {new Date(part.lastStockTake).toLocaleString()}
-                </Descriptions.Item>
+            <Descriptions.Item label='Part Number' contentStyle={{ textAlign: 'left' }} labelStyle={{ textAlign: 'left' }}>
+            {part.partNumber}
+            </Descriptions.Item>
+            <Descriptions.Item label='Description' contentStyle={{ textAlign: 'left' }} labelStyle={{ textAlign: 'left' }}>
+            {part.description}
+            </Descriptions.Item>
+            <Descriptions.Item label='Quantity On Hand' contentStyle={{ textAlign: 'left' }} labelStyle={{ textAlign: 'left' }}>
+            {part.quantityOnHand}
+            </Descriptions.Item>
+            <Descriptions.Item label='Location Code' contentStyle={{ textAlign: 'left' }} labelStyle={{ textAlign: 'left' }}>
+            {part.locationCode}
+            </Descriptions.Item>
+            <Descriptions.Item label='Last Stock Take' contentStyle={{ textAlign: 'left' }} labelStyle={{ textAlign: 'left' }}>
+            {new Date(part.lastStockTake).toLocaleString()}
+            </Descriptions.Item>
             </Descriptions>
             </div>
         )
