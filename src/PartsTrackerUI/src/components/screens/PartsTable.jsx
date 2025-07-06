@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Input, Table } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import partsService from '../../services/partsService'
+import CreatePartButton from '../Buttons/CreatePartButton'
 
 const PartsTable = ({ parts, setParts }) => {
     useEffect(() => {
@@ -72,6 +73,9 @@ const PartsTable = ({ parts, setParts }) => {
                 <h2 style={{ paddingLeft: '1.5%', paddingTop: '1%' }}>
                     Parts Table
                 </h2>
+            </div>
+            <div style={{ marginLeft: 'auto', paddingRight: '1.5%', paddingTop: '1%' }}>
+                    {<CreatePartButton />}
             </div>
             <Table
                 style={{ padding: '1%' }}

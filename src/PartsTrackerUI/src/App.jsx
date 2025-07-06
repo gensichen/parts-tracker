@@ -3,6 +3,8 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import PartsTable from './components/screens/PartsTable'
+import CreateNewPart from './components/screens/CreateNewPart'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 
 function App() {
@@ -32,7 +34,38 @@ function App() {
     //   </p>
     // </>
 
-    <PartsTable parts={parts} setParts={setParts}/>
+    // <PartsTable parts={parts} setParts={setParts}/>
+
+        //     <Router>
+        //     <Switch>
+        //         <Route exact path='/parts'>
+        //             <BookTable parts={parts} setParts={setParts}/>
+        //         </Route>
+        //         <Route exact path='/parts/create'>
+        //             <CreateNewBook parts={parts} setParts={setParts}/>
+        //         </Route>
+        //         {/* <Route exact path='/books/edit/:isbn'>
+        //             <EditBook />
+        //         </Route>
+        //         <Route exact path='/books/:isbn'>
+        //             <Book books={books} setBooks={setBooks}/>
+        //         </Route> */}
+        //     </Switch>
+        // </Router>
+
+            <Router>
+      <Routes>
+        <Route
+          path='/parts'
+          element={<PartsTable parts={parts} setParts={setParts} />}
+        />
+        <Route
+          path='/parts/create'
+          element={<CreateNewPart parts={parts} setParts={setParts} />}
+        />
+        {/* Add more routes as needed */}
+      </Routes>
+    </Router>
   )
 }
 
