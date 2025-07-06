@@ -1,0 +1,25 @@
+{
+    "parts": [
+        {
+            "partNumber": "MB1001",
+            "description": "Bolt",
+            "quantityOnHand": 60,
+            "locationCode": "FP1",
+            "lastStockTake": "2024-01-01T00:00:00Z"
+        },
+        {
+            "partNumber": "MB1002",
+            "description": "Nut",
+            "quantityOnHand": 100,
+            "locationCode": "FP2",
+            "lastStockTake": "2024-01-01T00:00:00Z"
+        },
+        {
+            "partNumber": "MB1003",
+            "description": "Washer",
+            "quantityOnHand": 75,
+            "locationCode": "FP2",
+            "lastStockTake": "2024-01-01T00:00:00Z"
+        }
+    ]
+}
