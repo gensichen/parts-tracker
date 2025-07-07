@@ -6,7 +6,7 @@ import CreatePartButton from '../Buttons/CreatePartButton'
 import { Space } from 'antd'
 import DeletePartButton from '../Buttons/DeletePartButton'
 import EditPartButton from '../Buttons/EditPartButton'
-import ViewMoreButton from '../Buttons/ViewMoreButton'
+import ViewMoreButton from '../buttons/ViewMoreButton'
 
 const PartsTable = ({ parts, setParts }) => {
     useEffect(() => {
@@ -70,7 +70,7 @@ const PartsTable = ({ parts, setParts }) => {
             render: (text, record, index) => (
                 <Space>
                     {<ViewMoreButton part={record}/>}
-                    {<DeletePartButton parts={record} setParts={setParts} partNumber={record.partNumber} />}
+                    {<DeletePartButton parts={parts} setParts={setParts} partNumber={record.partNumber} />}
                     {<EditPartButton part={record} />} 
                 </Space> 
             )

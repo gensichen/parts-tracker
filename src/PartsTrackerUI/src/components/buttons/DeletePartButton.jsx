@@ -2,18 +2,18 @@ import { Button } from 'antd'
 import React from 'react'
 import partsService from '../../services/partsService'
 
-const DeletePartButton = ({partNumber, setParts, parts}) => {
+const DeletePartButton = ({parts, setParts, partNumber}) => {
 
-    const deletePart = ([artNumber]) => {
+    const deletePart = (partNumber) => {
         partsService
             .remove(partNumber)
             .then(response => {
-                setBooks(parts.filter(part => part.partNumber !== partNumber))
+                setParts(parts.filter(part => part.partNumber !== partNumber))
             })
     }
 
     return (
-        <Button type='primary' onClick={() => deletePart(isbn)}>
+        <Button type='primary' onClick={() => deletePart(partNumber)}>
             Delete
         </Button>
     )

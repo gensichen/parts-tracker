@@ -1,5 +1,5 @@
 import axios from 'axios'
-const API_URL = 'https://localhost:44349/api/Parts/'
+const API_URL = 'https://localhost:44349/api/parts'
 
 // get all parts
 const getAll = () => {
