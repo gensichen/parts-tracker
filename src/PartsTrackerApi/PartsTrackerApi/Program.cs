@@ -1,9 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 using PartsTrackerApi.Data;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-
+using PartsTrackerApi.Application;
+using PartsTrackerApi.Domain;
+using PartsTrackerApi.Infrastructure;
 
 namespace PartsTrackerApi;
 
@@ -14,6 +13,8 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
+        builder.Services.AddScoped<IPartsRepository, PartsRepository>();
+        builder.Services.AddScoped<IPartsService, PartsService>();
         builder.Services.AddDbContext<PartsDbContext>(options =>
             options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
         
@@ -27,14 +28,17 @@ public class Program
             });
         });
         
-
+        builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+        builder.Services.AddProblemDetails();
+        
         builder.Services.AddControllers();
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
         var app = builder.Build();
-        
+
+        app.UseExceptionHandler();
+
         app.UseCors("AllowReactDev");
 
         // Configure the HTTP request pipeline.

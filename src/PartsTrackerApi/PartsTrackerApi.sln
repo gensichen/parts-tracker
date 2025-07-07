@@ -5,6 +5,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{96E29F9F-C291-4E93-AC1D-F9EA119B090E}"
 	ProjectSection(SolutionItems) = preProject
 		compose.yaml = compose.yaml
+		PartsTrackerAPI.dockerfile = PartsTrackerAPI.dockerfile
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartsTrackerApiTests", "..\..\tests\PartsTrackerApiTests\PartsTrackerApiTests.csproj", "{AD301862-2E67-4BCC-8CE0-04B8F165E858}"

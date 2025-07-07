@@ -2,33 +2,36 @@
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using PartsTrackerApi.Application;
 using PartsTrackerApi.Data;
+using PartsTrackerApi.Domain;
+
+namespace PartsTrackerApi.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/parts")]
 public class PartsController : ControllerBase
 {
-    private readonly PartsDbContext _context;
+    private readonly IPartsService _partsService;
 
-    public PartsController(PartsDbContext context)
+    public PartsController(IPartsService partsService)
     {
-        _context = context;
+        _partsService = partsService;
     }
 
     // GET: api/parts
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Part>>> GetParts()
     {
-        var parts = await _context.Parts.ToListAsync();
+        var parts = await _partsService.GetAllPartsAsync();
         return Ok(parts);
     }
- 
-    /*
-    // GET: api/parts/5
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Part>> GetPart(int id)
+
+    // GET: api/parts/{partNumber}
+    [HttpGet("{partNumber}")]
+    public async Task<ActionResult<Part>> GetPart(string partNumber)
     {
-        var part = await _context.Parts.FindAsync(id);
+        var part = await _partsService.GetPartByPartNumberAsync(partNumber);
 
         if (part == null)
         {
@@ -37,64 +40,47 @@ public class PartsController : ControllerBase
 
         return Ok(part);
     }
-    
+
     // POST: api/parts
     [HttpPost]
     public async Task<ActionResult<Part>> CreatePart(Part part)
     {
-        _context.Parts.Add(part);
-        await _context.SaveChangesAsync();
-
-        return CreatedAtAction(nameof(GetPart), new { id = part.Id }, part);
+        var createdPart = await _partsService.CreatePartAsync(part);
+        return CreatedAtAction(nameof(GetPart), new { partNumber = createdPart.PartNumber }, createdPart);
     }
 
-    // PUT: api/parts/5
-    [HttpPut("{id}")]
+    // PUT: api/parts/{partNumber}
+    [HttpPut("{partNumber}")]
     public async Task<IActionResult> UpdatePart(string partNumber, Part part)
     {
-        if (partNumber != part.partNumber)
+        if (partNumber != part.PartNumber)
         {
-            return BadRequest();
+            return BadRequest("Part number in URL doesn't match part number in request body");
         }
 
-        _context.Entry(part).State = EntityState.Modified;
+        var updatedPart = await _partsService.UpdatePartAsync(partNumber, part);
 
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!PartExists(id))
-            {
-                return NotFound();
-            }
-            throw;
-        }
-
-        return NoContent();
-    }
-
-    // DELETE: api/parts/MB1001
-    [HttpDelete("{partNumber}")]
-    public async Task<IActionResult> DeletePart(string partNumber)
-    {
-        var part = await _context.Parts.FindAsync(partNumber);
-        if (part == null)
+        if (updatedPart == null)
         {
             return NotFound();
         }
 
-        _context.Parts.Remove(part);
-        await _context.SaveChangesAsync();
-
         return NoContent();
     }
 
-    private bool PartExists(string partNumber)
+    // DELETE: api/parts/{partNumber}
+    [HttpDelete("{partNumber}")]
+    public async Task<IActionResult> DeletePart(string partNumber)
     {
-        return _context.Parts.Any(e => e.PartNumber == partNumber);
+        var result = await _partsService.DeletePartAsync(partNumber);
+
+        if (!result)
+        {
+            return NotFound();
+        }
+
+        return NoContent();
     }
+ 
     
-    */
 }

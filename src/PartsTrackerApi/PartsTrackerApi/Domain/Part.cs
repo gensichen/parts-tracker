@@ -1,4 +1,4 @@
-﻿namespace PartsTrackerApi.Data;
+﻿namespace PartsTrackerApi.Domain;
 
 public class Part
 {

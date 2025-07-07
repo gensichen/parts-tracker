@@ -1,6 +1,49 @@
+# For docker use http://localhost:5000
 @PartsTrackerApi_HostAddress = https://localhost:44349
 
-GET {{PartsTrackerApi_HostAddress}}/api/Parts/
+
+# Get all parts
+GET {{PartsTrackerApi_HostAddress}}/api/parts/
+Accept: application/json
+
+###
+
+# Get a specific part by part number
+GET {{PartsTrackerApi_HostAddress}}/api/parts/MB1001
+Accept: application/json
+
+###
+
+# Create a new part
+POST {{PartsTrackerApi_HostAddress}}/api/parts/
+Content-Type: application/json
+
+{
+  "partNumber": "MB1004",
+  "description": "Screw",
+  "quantityOnHand": 50,
+  "locationCode": "FP3",
+  "lastStockTake": "2024-07-07T00:00:00Z"
+}
+
+###
+
+# Update an existing part
+PUT {{PartsTrackerApi_HostAddress}}/api/parts/MB1001
+Content-Type: application/json
+
+{
+  "partNumber": "MB1001",
+  "description": "Long Bolt",
+  "quantityOnHand": 75,
+  "locationCode": "FP1",
+  "lastStockTake": "2024-07-07T00:00:00Z"
+}
+
+###
+
+# Delete a part
+DELETE {{PartsTrackerApi_HostAddress}}/api/parts/MB1004
 Accept: application/json
 
 ###
