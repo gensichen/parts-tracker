@@ -25,8 +25,11 @@ jobs:
     - name: 📦 Restore test dependencies
       run: dotnet restore tests/PartsTrackerApiTests/PartsTrackerApiTests.csproj
 
-    - name: 🧪 Build solution
+    - name: 🧪 Build api
       run: dotnet build src/PartsTrackerApi/PartsTrackerApi/PartsTrackerApi.csproj --configuration Release --no-restore
+    
+    - name: 🧪 Build test project
+      run: dotnet build tests/PartsTrackerApiTests/PartsTrackerApiTests.csproj --configuration Release --no-restore
 
     - name: ✅ Run tests
       run: dotnet test tests/PartsTrackerApiTests/PartsTrackerApiTests.csproj --no-build --configuration Release --verbosity normal
