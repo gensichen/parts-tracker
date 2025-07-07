@@ -1,10 +1,19 @@
-﻿#services:
-#  partstrackerapi:
-#    image: partstrackerapi
-#    build:
-#      context: .
-#      dockerfile: PartsTrackerApi/Dockerfile
-services:
+﻿services:
+  
+  partstrackerapi:
+      image: partstrackerapi
+      build:
+        context: .
+        dockerfile: PartsTrackerAPI.dockerfile
+      ports:
+        - "5000:8080"
+      environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        - ConnectionStrings__DefaultConnection=Host=postgres;Database=PartsDb;Username=postgres;Password=postgres123
+      depends_on:
+        - postgres
+      restart: unless-stopped
+
   postgres:
     image: postgres:16
     container_name: parts_db
