@@ -37,10 +37,10 @@ jobs:
     - name: 🐳 Build Docker image
       run: docker build -t parts-tracker-api -f src/PartsTrackerApi/PartsTrackerApi/Dockerfile .
 
-    - name: 🧹 Format Terraform (optional)
+    - name: 🧹 Format Terraform
       run: terraform fmt -check
       working-directory: infra
 
-    - name: 🔍 Validate Terraform (optional)
+    - name: 🔍 Validate Terraform
       run: terraform validate
       working-directory: infra
