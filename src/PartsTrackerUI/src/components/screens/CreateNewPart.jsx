@@ -21,7 +21,7 @@ const CreateNewPart = ({ parts, setParts }) => {
             .create(partObject)
             .then(newPart => {
                 setParts(prev => [...prev, newPart])
-                history.goBack()
+                navigate(-1)
             })
     }
 

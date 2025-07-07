@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import partsService from '../../services/partsService'
-import { Form, Button, Input } from 'antd'
+import { Form, Button, Input, DatePicker } from 'antd'
+import dayjs from 'dayjs'
 import { PageHeader } from '@ant-design/pro-layout'
 
 const EditPart = () => {
@@ -31,7 +32,9 @@ const EditPart = () => {
             description: values.Description,
             quantityOnHand: Number(values.QuantityOnHand),
             locationCode: values.LocationCode,
-            lastStockTake: new Date().toISOString()
+            lastStockTake: values.LastStockTake
+                ? values.LastStockTake.toISOString()
+                : new Date().toISOString()
         }
         partsService
             .update(newPartNumber, partObject)
@@ -55,7 +58,8 @@ const EditPart = () => {
                     { name: ['Description'], value: newDescription },
                     { name: ['QuantityOnHand'], value: newQuantityOnHand },
                     { name: ['LocationCode'], value: newLocationCode },
-                    { name: ['PartNumber'], value: newPartNumber }
+                    { name: ['PartNumber'], value: newPartNumber },
+                    { name: ['LastStockTake'], value: newLastStockTake ? dayjs(newLastStockTake) : null }
                 ]}
             >
                 <Form.Item
@@ -108,6 +112,21 @@ const EditPart = () => {
                     hasFeedback
                 >
                     <Input placeholder='Input Location Code' />
+                </Form.Item>
+                <Form.Item
+                    name='LastStockTake'
+                    label='Last Stock Take'
+                    rules={[
+                        { required: true, message: 'Last Stock Take is required' }
+                    ]}
+                    hasFeedback
+                >
+                    <DatePicker
+                        showTime
+                        style={{ width: '100%' }}
+                        format="YYYY-MM-DDTHH:mm:ss[Z]"
+                        placeholder='Select Last Stock Take Date'
+                    />
                 </Form.Item>
                 <Form.Item>
                     <Button block type='primary' htmlType='submit'>

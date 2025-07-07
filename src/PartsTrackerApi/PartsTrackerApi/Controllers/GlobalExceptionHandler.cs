@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace PartsTrackerApi.Application;
+namespace PartsTrackerApi.Controllers;
 
 public class GlobalExceptionHandler : IExceptionHandler
 {

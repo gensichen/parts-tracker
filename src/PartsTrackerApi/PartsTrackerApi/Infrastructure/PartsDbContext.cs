@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PartsTrackerApi.Domain;
 
-namespace PartsTrackerApi.Data;
+namespace PartsTrackerApi.Infrastructure;
 
 public class PartsDbContext : DbContext
 {

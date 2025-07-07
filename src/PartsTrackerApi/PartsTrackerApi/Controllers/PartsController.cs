@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using PartsTrackerApi.Application;
-using PartsTrackerApi.Data;
 using PartsTrackerApi.Domain;
 
 namespace PartsTrackerApi.Controllers;

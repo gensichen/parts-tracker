@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PartsTrackerApi.Data;
 using PartsTrackerApi.Domain;
 
 namespace PartsTrackerApi.Infrastructure;
