@@ -21,6 +21,7 @@ jobs:
 
     - name: 📦 Restore dependencies
       run: dotnet restore src/PartsTrackerApi/PartsTrackerApi/PartsTrackerApi.csproj
+      run: dotnet restore tests/PartsTrackerApiTests/PartsTrackerApiTests.csproj
 
     - name: 🧪 Build solution
       run: dotnet build src/PartsTrackerApi/PartsTrackerApi/PartsTrackerApi.csproj --configuration Release --no-restore
