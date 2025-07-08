@@ -6,8 +6,8 @@ WORKDIR /app
 COPY . .
 
 # Build and publish
-RUN dotnet restore "./PartsTrackerApi.csproj"
-RUN dotnet publish "./PartsTrackerApi.csproj" -c Release -o out
+RUN dotnet restore "./PartsTrackerApi/PartsTrackerApi.csproj"
+RUN dotnet publish "./PartsTrackerApi/PartsTrackerApi.csproj" -c Release -o out
 
 # Build the runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
