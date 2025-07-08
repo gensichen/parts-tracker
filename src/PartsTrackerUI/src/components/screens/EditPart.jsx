@@ -16,7 +16,7 @@ const EditPart = () => {
 
     useEffect(() => {
         partsService
-            .getPart(partNumber)
+            .getPart({partNumber})
             .then(part => {
                 setNewDescription(part.description)
                 setNewQuantityOnHand(part.quantityOnHand)
