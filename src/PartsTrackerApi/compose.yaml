@@ -4,7 +4,7 @@
       image: partstrackerapi
       build:
         context: .
-        dockerfile: PartsTrackerAPI.dockerfile
+        dockerfile: PartsTrackerApi.dockerfile
       ports:
         - "5000:8080"
       environment:
