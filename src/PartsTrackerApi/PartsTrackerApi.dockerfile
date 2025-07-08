@@ -2,14 +2,11 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
-# Copy the project file and restore any dependencies (use .csproj for the project name)
-COPY PartsTrackerApi/PartsTrackerApi.csproj ./
+# Copy everything
+COPY . .
+
+# Build and publish
 RUN dotnet restore "./PartsTrackerApi.csproj"
-
-# Copy the rest of the application code
-COPY PartsTrackerApi/ ./
-
-# Publish the application
 RUN dotnet publish "./PartsTrackerApi.csproj" -c Release -o out
 
 # Build the runtime image
