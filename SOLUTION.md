@@ -41,56 +41,17 @@ The system is built as a parts tracking API with the following key components:
      - No built-in audit trail
      - Single-table design may need expansion for complex scenarios
 
-## Security (TODOs)
+## TODOs
+   - Health Check
+   - More tests
+   - Test out setup doc instructions (how to seed the db, etc).
 
-1. **Data Access**
-   - Implement role-based access control (RBAC)
-   - Use HTTPS for all API communications
+## Future TODOs
+   - Build in resiliency (Circuit Breaking, Rate Limiting, Retries) using Polly.
+   - Pipeline integration tests.
+   - Helm
+   - Monitoring & Dashboards (Grafana or ELK)
    - Implement API authentication using JWT or API keys
-   - Add rate limiting for API endpoints
-
-2. **Data Protection**
-   - Encrypt sensitive data at rest
    - Implement audit logging for all inventory changes
-   - Regular security scans and updates
    - Input validation for all API endpoints
-
-## Monitoring (TODOs)
-
-1. **Application Monitoring**
-   - Implement health checks for API and database (TODO)
-   - Set up performance metrics tracking
-   - Monitor API response times
-   - Track database query performance
-
-2. **Business Metrics**
-   - Monitor inventory levels
-   - Track stock movements
-   - Alert on low stock conditions
-   - Report on inventory accuracy
-
-3. **Infrastructure**
-   - Database performance metrics
-   - Server resource utilization
-   - Network latency monitoring
-   - Regular backup verification
-
-## Cost
-
-1. **Infrastructure Costs**
-   - Database hosting costs
-   - API hosting costs
-   - Backup storage costs
-   - Monitoring solution costs
-
-2. **Optimization Strategies**
-   - Implement caching for frequently accessed parts
-   - Use appropriate database scaling options
-   - Optimize query performance
-   - Consider read replicas for reporting
-
-3. **Maintenance Costs**
-   - Regular database maintenance
-   - Application updates and patches
-   - Security audits and updates
-   - Developer maintenance time
+   - Security scanning of containers, OwaspZap
