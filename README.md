@@ -8,6 +8,7 @@ A modern web application for tracking parts inventory and management.
     - npm package manager
     - Git
     - .NET 8
+    - Docker
    
 
 2. **Installation**
@@ -42,10 +43,13 @@ A modern web application for tracking parts inventory and management.
 The Parts-Tracker application is designed with the following key principles:
 
 1. **Modern Stack**
-    - Built with React 19.1.0 for a robust and efficient frontend
-    - Utilizes Ant Design components for consistent UI/UX
-    - .NET8 Web API
-    - PostgreSQL
+    - Frontend
+        - Built with React 19.1.0 for a robust and efficient frontend
+        - Utilizes Ant Design components for consistent UI/UX
+    - Backend
+        - .NET8 Web API
+        - PostgreSQL
+        - NUnit 
    
 
 2. **Maintainable Architecture**
@@ -67,6 +71,8 @@ The Parts-Tracker application is designed with the following key principles:
 4. **Testing and Quality**
     - Dedicated test directory for maintaining test suites
     - Infrastructure as code for consistent deployments
+    - Use of Guard clauses.
+    - Use of Fluent Assertions and NSubstitute.
 
 For detailed technical decisions and trade-offs, please refer to [SOLUTION.md](SOLUTION.md).
 
