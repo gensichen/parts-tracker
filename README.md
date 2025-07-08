@@ -74,5 +74,8 @@ The Parts-Tracker application is designed with the following key principles:
     - Use of Guard clauses.
     - Use of Fluent Assertions and NSubstitute.
 
+## Parts Tracker API UML
+![PartsTracker-PartsTrackerAPI.drawio.png](docs/PartsTracker-PartsTrackerAPI.drawio.png)
+
 For detailed technical decisions and trade-offs, please refer to [SOLUTION.md](SOLUTION.md).
 

@@ -1,6 +1,6 @@
 ## Architecture Overview
 
-### PartsTrackerAPI
+### PartsTracker
 
 The system is built as a parts tracking API with the following key components:
 
@@ -20,8 +20,6 @@ The system is built as a parts tracking API with the following key components:
    - Built with ASP.NET Core
    - Provides CRUD operations for parts management
 
-![PartsTracker-PartsTrackerAPI.drawio.png](docs/PartsTracker-PartsTrackerAPI.drawio.png)
-
 ## Trade-offs
 
 1. **ORM Choice (Entity Framework Core)**
@@ -37,13 +35,13 @@ The system is built as a parts tracking API with the following key components:
 2. **Data Model Design**
    - Pros:
      - Simple, focused schema
-     - Efficient queries with PartNumber as primary key
+     - Efficient queries with PartNumber as primary key - should ideally be an int though.
    - Cons:
      - Limited historical tracking
      - No built-in audit trail
      - Single-table design may need expansion for complex scenarios
 
-## Security
+## Security (TODOs)
 
 1. **Data Access**
    - Implement role-based access control (RBAC)
@@ -57,10 +55,10 @@ The system is built as a parts tracking API with the following key components:
    - Regular security scans and updates
    - Input validation for all API endpoints
 
-## Monitoring
+## Monitoring (TODOs)
 
 1. **Application Monitoring**
-   - Implement health checks for API and database
+   - Implement health checks for API and database (TODO)
    - Set up performance metrics tracking
    - Monitor API response times
    - Track database query performance
