@@ -1,3 +1,5 @@
+using System.Text.Json;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using PartsTrackerApi.Controllers;
 using PartsTrackerApi.Application;
@@ -36,8 +38,12 @@ public class Program
         builder.Services.AddSwaggerGen();
         
         // health check service.
-        builder.Services.AddHealthChecks();
-
+        builder.Services.AddHealthChecks()
+            .AddNpgSql(
+                builder.Configuration.GetConnectionString("PostgresConnection"),
+                name: "postgresql",
+                tags: new[] { "db", "sql", "postgresql" });
+        
         var app = builder.Build();
 
         app.UseExceptionHandler();
@@ -45,7 +51,28 @@ public class Program
         app.UseCors("AllowReactDev");
         
         //HealthCheck Middleware
-        app.MapHealthChecks("/api/health");
+        app.MapHealthChecks("/api/health", new HealthCheckOptions
+        {
+            ResponseWriter = async (context, report) =>
+            {
+                context.Response.ContentType = "application/json";
+        
+                var response = new
+                {
+                    Status = report.Status.ToString(),
+                    Checks = report.Entries.Select(e => new
+                    {
+                        Component = e.Key,
+                        Status = e.Value.Status.ToString(),
+                        Description = e.Value.Description
+                    }),
+                    TotalDuration = report.TotalDuration
+                };
+
+                await JsonSerializer.SerializeAsync(context.Response.Body, response);
+            }
+        });
+
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
