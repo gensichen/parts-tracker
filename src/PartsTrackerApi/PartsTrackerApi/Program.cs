@@ -34,12 +34,18 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        
+        // health check service.
+        builder.Services.AddHealthChecks();
 
         var app = builder.Build();
 
         app.UseExceptionHandler();
 
         app.UseCors("AllowReactDev");
+        
+        //HealthCheck Middleware
+        app.MapHealthChecks("/api/health");
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
